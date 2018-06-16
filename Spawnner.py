@@ -34,10 +34,10 @@ class Spawnner():
 
     def drawSpawnner(self):
         pygame.draw.circle(Display.DISPLAYSURF, self.color,
-                           (self.x + self.size / 2, self.y + self.size / 2),
-                           self.size / 2)
-        Display.DISPLAYSURF.blit(self.text, (self.x - self.size / 2 - 10,
-                                             (self.y - self.size / 2 - 20)))
+                           (self.x + self.size // 2, self.y + self.size // 2),
+                           self.size // 2)
+        Display.DISPLAYSURF.blit(self.text, (self.x - self.size // 2 - 10,
+                                             (self.y - self.size // 2 - 20)))
 
     def death(self):
         p = Potions.Potion()

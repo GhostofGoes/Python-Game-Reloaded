@@ -15,14 +15,14 @@ UP_DOOR = 0
 RIGHT_DOOR = 1
 DOWN_DOOR = 2
 LEFT_DOOR = 3
-UP_DOOR_CORDS = [Display.SCREEN_WIDTH / 2, Display.GAME_SCREEN_START]
+UP_DOOR_CORDS = [Display.SCREEN_WIDTH // 2, Display.GAME_SCREEN_START]
 RIGHT_DOOR_CORDS = [
-    Display.SCREEN_WIDTH - DOOR_WIDTH, Display.SCREEN_HEIGHT / 2
+    Display.SCREEN_WIDTH - DOOR_WIDTH, Display.SCREEN_HEIGHT // 2
 ]
 DOWN_DOOR_CORDS = [
-    Display.SCREEN_WIDTH / 2, Display.SCREEN_HEIGHT - DOOR_LENGTH
+    Display.SCREEN_WIDTH // 2, Display.SCREEN_HEIGHT - DOOR_LENGTH
 ]
-LEFT_DOOR_CORDS = [0, Display.SCREEN_HEIGHT / 2]
+LEFT_DOOR_CORDS = [0, Display.SCREEN_HEIGHT // 2]
 
 
 class Room:
@@ -138,7 +138,7 @@ class Room:
                                                   True, False),
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
-                    elif x < Display.SCREEN_WIDTH / 2:  #left part
+                    elif x < Display.SCREEN_WIDTH // 2:  #left part
                         Display.DISPLAYSURF.blit(
                             self.wall_up_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
@@ -150,7 +150,7 @@ class Room:
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
                     # draw door if it exists
-                    if x == Display.SCREEN_WIDTH / 2 and self.doors[UP_DOOR] != -1:
+                    if x == Display.SCREEN_WIDTH // 2 and self.doors[UP_DOOR] != -1:
                         Display.DISPLAYSURF.blit(
                             self.door_up_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
@@ -168,7 +168,7 @@ class Room:
                             self.wall_flipped_corner_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
-                    elif x < Display.SCREEN_WIDTH / 2:  #left part
+                    elif x < Display.SCREEN_WIDTH // 2:  #left part
                         Display.DISPLAYSURF.blit(
                             self.wall_down_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
@@ -180,14 +180,14 @@ class Room:
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
                     # draw door if it exists
-                    if x == Display.SCREEN_WIDTH / 2 and self.doors[DOWN_DOOR] != -1:
+                    if x == Display.SCREEN_WIDTH // 2 and self.doors[DOWN_DOOR] != -1:
                         Display.DISPLAYSURF.blit(
                             self.door_down_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
                 # right wall
                 elif x == Display.SCREEN_WIDTH - Display.TILE_SIZE:
-                    if y < Display.SCREEN_HEIGHT / 2:  # upper part
+                    if y < Display.SCREEN_HEIGHT // 2:  # upper part
                         Display.DISPLAYSURF.blit(
                             self.wall_right_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
@@ -199,14 +199,14 @@ class Room:
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
                     # draw door if it exists
-                    if y == Display.SCREEN_HEIGHT / 2 and self.doors[RIGHT_DOOR] != -1:
+                    if y == Display.SCREEN_HEIGHT // 2 and self.doors[RIGHT_DOOR] != -1:
                         Display.DISPLAYSURF.blit(
                             self.door_right_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
                 # left wall
                 elif x == 0:
-                    if y >= Display.SCREEN_HEIGHT / 2:  # upper part
+                    if y >= Display.SCREEN_HEIGHT // 2:  # upper part
                         Display.DISPLAYSURF.blit(
                             self.wall_left_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,
@@ -218,7 +218,7 @@ class Room:
                             pygame.Rect(x, y, Display.TILE_SIZE,
                                         Display.TILE_SIZE))
                     # draw door if it exists
-                    if y == Display.SCREEN_HEIGHT / 2 and self.doors[LEFT_DOOR] != -1:
+                    if y == Display.SCREEN_HEIGHT // 2 and self.doors[LEFT_DOOR] != -1:
                         Display.DISPLAYSURF.blit(
                             self.door_left_sprite,
                             pygame.Rect(x, y, Display.TILE_SIZE,

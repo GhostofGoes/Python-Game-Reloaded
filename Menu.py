@@ -53,7 +53,7 @@ class Menu:
         for x in range(0, len(self.dialogue), 61):
             text = myfont.render(self.dialogue[x:x + 61], 1, Display.WHITE)
             Display.DISPLAYSURF.blit(
-                text, (15, Display.DIALOGUE_BOX_START + 10 + 15 * x / 61))
+                text, (15, Display.DIALOGUE_BOX_START + 10 + 15 * x // 61))
 
     def drawMenu(self):
         Display.DISPLAYSURF.blit(

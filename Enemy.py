@@ -322,23 +322,23 @@ class VariableEnemy:
             if self.noun == 1:  #Swarm
                 pygame.draw.circle(Display.DISPLAYSURF, self.color,
                                    (self.x + 5, self.y - 5),
-                                   self.size / 5)  #maybe change these
+                                   self.size // 5)  #maybe change these
                 pygame.draw.circle(Display.DISPLAYSURF, self.color,
                                    (self.x + 5, self.y + 5),
-                                   self.size / 5)  #to be random
+                                   self.size // 5)  #to be random
                 pygame.draw.circle(Display.DISPLAYSURF, self.color,
                                    (self.x, self.y),
-                                   self.size / 5)  #between 1-5
+                                   self.size // 5)  #between 1-5
                 pygame.draw.circle(Display.DISPLAYSURF, self.color,
                                    (self.x - 5, self.y + 5),
-                                   self.size / 5)  #for swarm movement
+                                   self.size // 5)  #for swarm movement
                 pygame.draw.circle(Display.DISPLAYSURF, self.color,
-                                   (self.x - 5, self.y - 5), self.size / 5)
+                                   (self.x - 5, self.y - 5), self.size // 5)
         else:
             pygame.draw.circle(
                 Display.DISPLAYSURF, self.color,
-                (self.x + self.size / 2, self.y + self.size / 2),
-                self.size / 2)
+                (self.x + self.size // 2, self.y + self.size // 2),
+                self.size // 2)
             pygame.draw.aaline(Display.DISPLAYSURF, Display.BLACK,
                                (self.x, self.y), (self.weaponx, self.weapony),
                                1)
@@ -348,10 +348,10 @@ class VariableEnemy:
                     pygame.Rect(self.x, self.y, self.size, self.size))
             # draw verb animation
             if self.verbAnimSpriteObj:
-                self.verbAnimSpriteObj.update(self.x - self.size / 2,
-                                              self.y - self.size / 2, False, 0)
-                self.verbAnimSpriteObj.update(self.x + self.size / 2,
-                                              self.y - self.size / 2, True, 0)
+                self.verbAnimSpriteObj.update(self.x - self.size // 2,
+                                              self.y - self.size // 2, False, 0)
+                self.verbAnimSpriteObj.update(self.x + self.size // 2,
+                                              self.y - self.size // 2, True, 0)
 
         Display.DISPLAYSURF.blit(self.text, (self.x - self.size * 2,
                                              (self.y - self.size * 1.5)))

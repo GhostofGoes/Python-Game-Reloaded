@@ -87,9 +87,11 @@ class Player:
         self.updateToWeaponStats()
         self.attackRect = pygame.Rect(self.x, self.y, self.currentWeapon.range,
                                       self.currentWeapon.range)
-        self.circle = pygame.draw.circle(Display.DISPLAYSURF, Display.BLACK,
-                                         (self.collisionx, self.collisiony),
-                                         self.range, 1)
+        # if not isinstance(self.range, int):
+        #     import pudb
+        #     pudb.set_trace()
+        # print(self.range)
+        self.circle = pygame.draw.circle(Display.DISPLAYSURF, Display.BLACK, (self.collisionx, self.collisiony), self.range, 1)
         self.logger = logging.getLogger(__name__)
         self.logger.debug('Player %s Initialized', self.name)
 
