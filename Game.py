@@ -1,6 +1,5 @@
 """ Main game logic. Where the magic happens. """
 
-import sys
 import logging
 
 import pygame

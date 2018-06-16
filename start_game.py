@@ -1,3 +1,4 @@
+"""Main entrypoint to start the game."""
 
 import sys
 import logging
@@ -8,8 +9,12 @@ import Game
 import Utils
 
 
+
+# TODO: need a name for this game...
+# TODO: license
+
+
 def main():
-    """ For non-networked gameplay """
     logging.basicConfig(filename='Python-Game.log', level=logging.DEBUG)
     from time import strftime
     logging.info('Beginning of logging for run starting at %s',
