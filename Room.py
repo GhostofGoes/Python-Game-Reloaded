@@ -60,9 +60,9 @@ class Room:
         #x, y, True if player enters this door, connected room,
 
         #self.doors =   {'leftDoor': [0, Display.SCREEN_HEIGHT/2, None, 'leftDoor'],
-        #				'rightDoor': [Display.SCREEN_WIDTH-DOOR_WIDTH, Display.SCREEN_HEIGHT/2, None, 'rightDoor'],
-        #				'upDoor': [Display.SCREEN_WIDTH/2, Display.GAME_SCREEN_START, None, 'upDoor'],
-        #				'downDoor': [Display.SCREEN_WIDTH/2, Display.SCREEN_HEIGHT - DOOR_LENGTH, None, 'downDoor']}
+        #                'rightDoor': [Display.SCREEN_WIDTH-DOOR_WIDTH, Display.SCREEN_HEIGHT/2, None, 'rightDoor'],
+        #                'upDoor': [Display.SCREEN_WIDTH/2, Display.GAME_SCREEN_START, None, 'upDoor'],
+        #                'downDoor': [Display.SCREEN_WIDTH/2, Display.SCREEN_HEIGHT - DOOR_LENGTH, None, 'downDoor']}
         self.doors = [-1, -1, -1, -1]
         Dungeon.listDoors.extend(self.doors)
         self.currentRoom = True

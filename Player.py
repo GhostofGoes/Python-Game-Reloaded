@@ -249,19 +249,19 @@ class Player:
     def usePotion(self):
         if Utils.playerPotions:
             usedPotion = Utils.playerPotions.pop()
-            if usedPotion.isHealth == True:
+            if usedPotion.isHealth:
                 if self.health == self.maxHealth:
                     print("Well, that was dumb...")
                 self.health += usedPotion.size
                 self.dot = False
                 if self.health >= self.maxHealth:
                     self.health = self.maxHealth
-            elif usedPotion.isStamina == True:
-                if self.stamina == maxStamina:
+            elif usedPotion.isStamina:
+                if self.stamina == self.maxStamina:
                     print("What a dummie...")
                 self.stamina += usedPotion.size
-                if self.stamina >= maxStamina:
-                    self.stamina = maxStamina
+                if self.stamina >= self.maxStamina:
+                    self.stamina = self.maxStamina
             print("Used a %s! %s potions left..." %
                   (usedPotion.name, len(Utils.playerPotions)))
         else:
@@ -285,11 +285,11 @@ class Player:
             tempWeapon = self.currentWeapon
             self.currentWeapon = Utils.playerInventory.pop(0)
             Utils.playerInventory.append(tempWeapon)
-            print("Hero equipped %s" % (self.currentWeapon.name))
+            print("Hero equipped %s" % self.currentWeapon.name)
         else:
             print("No other weapons!")
 
-    #Level up the player. Simply give the player one new heart every 20 exp pts
+    # Level up the player. Simply give the player one new heart every 20 exp pts
     def checkExperience(self):
         if self.experience >= 20:
             self.maxHealth += 1

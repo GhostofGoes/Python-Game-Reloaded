@@ -9,8 +9,8 @@ BOSSDROPRATE = 10
 
 
 class Inventory:
-    '''seemingly redundant, but because of how enemies are made, they will have different base items. 
-	Therefore, pass their items in a list, to inventory for easier keeping and function stuff. ALso, drops'''
+    """seemingly redundant, but because of how enemies are made, they will have different base items.
+    Therefore, pass their items in a list, to inventory for easier keeping and function stuff. ALso, drops"""
 
     def __init__(self, droprate, inventory):
         self.items = []

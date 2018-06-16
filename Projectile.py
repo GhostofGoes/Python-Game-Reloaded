@@ -1,6 +1,6 @@
-'''projectile class for arrows and the like (throwing knives?
+"""projectile class for arrows and the like (throwing knives?
  which spawns at an x and y coordinate, and quickly moves to an end
- x and y coordinate'''
+ x and y coordinate"""
 import pygame
 import Display
 import math

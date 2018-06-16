@@ -60,37 +60,39 @@ class MeleeWeapon:
         self.collisionx = 0
         self.collisiony = 0
         self.direction = "none"
+
+        # Generate a unique name for the Weapon
+        # TODO: make this process generic and simplified for ALL items
         self.adjective = random.randint(0, len(WM.lladjectives) - 1)
         self.material = random.randint(0, len(WM.llmaterial) - 1)
         self.noun = random.randint(0, len(WM.llnouns) - 1)
-        self.hasSpecial = False
+        self.name = "{adj} {mat} {noun}".format(
+            adj=WM.lladjectives[self.adjective],
+            mat=WM.llmaterial[self.material],
+            noun=WM.llnouns[self.noun])
         if self.isSpecial():
             self.hasSpecial = True
             self.verb = random.randint(0, len(WM.llverbs) - 1)
-            self.name = WM.lladjectives[self.
-                                        adjective] + " " + WM.llmaterial[self.
-                                                                         material] + " " + WM.llnouns[self.
-                                                                                                      noun] + " " + WM.llverbs[self.
-                                                                                                                               verb]
+            self.name += " " + WM.llverbs[self.verb]
         else:
-            self.name = WM.lladjectives[self.
-                                        adjective] + " " + WM.llmaterial[self.
-                                                                         material] + " " + WM.llnouns[self.
-                                                                                                      noun]
+            self.hasSpecial = False
+
         self.font = pygame.font.SysFont("monospace", 12)
         self.text = self.font.render(self.name, 1, (0, 0, 0))
+
+        # Get traits for the weapon
         self.getAdjectiveTraits()
         self.getMaterialTraits()
         self.getNounTraits()
 
-    #This adds special "effects" - magic, bleed, etc. if the drop rate is above 3
+    # This adds special "effects" - magic, bleed, etc. if the drop rate is above 3
     def isSpecial(self, dropRate=0):
         if (random.randint(0, 18) + dropRate) > 20:
-            #add some stuff about picking new adjectives and nouns and material to ensure it's good L00t!
+            # TODO: add some stuff about picking new adjectives and nouns and material to ensure it's good L00t!
             return True
 
     def getAdjectiveTraits(self):
-        '''Used to retrieve the trait changes of the adjective applied'''
+        """Used to retrieve the trait changes of the adjective applied"""
         if self.adjective == 0:  #Tainted
             self.damageUser = True
             self.damageToUser = 1
@@ -100,7 +102,7 @@ class MeleeWeapon:
             self.damageToSelf = random.randint(0, 4)  #Between zero and three
             self.damage = self.damage + random.randint(2, 5)
 
-        #Between 2 and 11 are default values - handled in ELSE
+        # Between 2 and 11 are default values - handled in ELSE
         elif self.adjective == 12:  #Rotten
             self.hasEffect = True
             self.effect = "poison"
@@ -136,29 +138,29 @@ class MeleeWeapon:
             self.effect = "bleed"
             self.dot = 1
 
-        elif self.noun == 3:  #mace
+        elif self.noun == 3:  # mace
             self.damage += 2
             self.speed -= 1
 
-        elif self.noun == 4:  #Katana
+        elif self.noun == 4:  # Katana
             self.damage += 1
             self.speed += 1
             self.hasEffect = True
             self.effect = "bleed"
             self.dot = 1
 
-        elif self.noun == 5:  #Broadsword
+        elif self.noun == 5:  # Broadsword
             self.damage += 1
             self.speed -= 1
 
-        elif self.noun == 6:  #Longsword
+        elif self.noun == 6:  # Longsword
             self.range += 2
             self.speed -= 1
 
-        elif self.noun == 7:  #Cudgel
+        elif self.noun == 7:  # Cudgel
             self.damage += 2
 
-        else:  #defaults
+        else:  # defaults
             pass
 
     def getMaterialTraits(self):
@@ -170,44 +172,44 @@ class MeleeWeapon:
             self.damage += 1
             self.speed -= 1
 
-        elif self.material == 3:  #Copper
-            pass  #Defaults good
+        elif self.material == 3:  # Copper
+            pass  # Defaults good
 
-        elif self.material == 4:  #Glass
+        elif self.material == 4:  # Glass
             self.damage += 1
             self.hasEffect = True
             self.effect = "bleed"
             self.dot = 0.5
         else:
-            pass  #Defaults
+            pass  # Defaults
 
     def getSpecialTraits(self):
         if self.hasSpecial:
-            if self.verb == 0:  #of smoldering
+            if self.verb == 0:  # of smoldering
                 self.hasEffect = True
                 self.effect = "fire"
                 self.dot = 1
 
-            elif self.verb == 1:  #of numbing
+            elif self.verb == 1:  # of numbing
                 self.hasEffect = True
                 self.effect = "frost"
                 self.dot = 1
 
-            elif self.verb == 2:  #of sparking
+            elif self.verb == 2:  # of sparking
                 self.hasEffect = True
                 self.effect = "electric"
                 self.dot = 1
 
-            elif self.verb == 3:  #of mild stink (lol)
+            elif self.verb == 3:  # of mild stink (lol)
                 self.hasEffect = True
                 self.effect = "poison"
                 self.dot = 1
 
             else:  # TODO: log when these happen to debugging
-                pass  #Shouldn't happen
+                pass  # Shouldn't happen
 
     def printName(self):
-        print("%s" % (self.name))
+        print(self.name)
 
     def dropWeapon(self, x, y):
         self.originx = x
@@ -219,7 +221,7 @@ class MeleeWeapon:
         pygame.draw.line(Display.DISPLAYSURF, Display.BLACK,
                          (self.originx, self.originy),
                          (self.originx + 50, self.originy), 1)
-        Display.DISPLAYSURF.blit(self.text, (self.originx - 5, (self.originy)))
+        Display.DISPLAYSURF.blit(self.text, (self.originx - 5, self.originy))
 
     def pickup(self):
         Utils.playerInventory.append(self)

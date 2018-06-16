@@ -187,7 +187,7 @@ class Input:
             elif event.type == JOYAXISMOTION:
                 self._axis_movement(0, playerObj)
                 #for con in range(self.num_controllers):
-                #	self._axis_movement(con, self.players[con])
+                #    self._axis_movement(con, self.players[con])
 
             # TODO: non 10-button controller handling
             elif event.type == JOYBUTTONDOWN:
@@ -333,19 +333,19 @@ class Input:
     # TODO: axis movement mapping
     def _axis_movement(self, con, playerObj):
         """
-		Xbox 360
-			Axis 0/1 	= LS
-			Axis 2 		= LT/RT (0 is resting value)
-				-1 to 0 = RT
-				1 to 0 	= LT
-			Axis 3/4	= RS
+        Xbox 360
+            Axis 0/1    = LS
+            Axis 2      = LT/RT (0 is resting value)
+                -1 to 0 = RT
+                 1 to 0 = LT
+            Axis 3/4    = RS
 
-		Xbox ONE
-			Axis 0/1	= LS
-			Axis 2/3	= RS
-			Axis 4		= LT	(-1 is resting value)
-			Axis 5 		= RT	( -1 is resting value)
-		"""
+        Xbox ONE
+            Axis 0/1    = LS
+            Axis 2/3    = RS
+            Axis 4      = LT    (-1 is resting value)
+            Axis 5      = RT    ( -1 is resting value)
+        """
 
         if self.controllers[con].get_numaxes() == 5:
             """ Xbox 360 and other '5 axis' controllers """
@@ -367,7 +367,9 @@ class Input:
         # Left stick
         if self.controllers[con].get_axis(
                 LS_X) < NEG_SENS:  # Left stick, X-axis left
-            playerObj.moveRight = False  # Not sure if necessary, but to be safe for now. SDL's pointless printing is wasting way more cycles anyhow.
+            # Not sure if necessary, but to be safe for now.
+            # SDL's pointless printing is wasting way more cycles anyhow.
+            playerObj.moveRight = False
             playerObj.moveLeft = True
             playerObj.direction = 'left'
         elif self.controllers[con].get_axis(
@@ -432,11 +434,9 @@ class Input:
 
     # TODO: not sure how to do this without passing a input object everywhere yet
     def get_current_pos(self):
-        """
-		Gets current position on the screen.
-		If mouse: 		simply return current position of mouse
-		If controller: 	return current virtual position being tracked by Input
-		"""
+        """Gets current position on the screen.
+        If mouse:      simply return current position of mouse
+        If controller: return current virtual position being tracked by Input"""
         if self.vPosX and self.vPosY:
             return self.vPosX[0], self.vPosY[0]  # TODO: multiple players
         else:

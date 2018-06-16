@@ -176,11 +176,11 @@ class VariableEnemy:
         self.coin.setDrawInfo(self.inventory.coins, self.x, self.y)
 
     def getAdjectiveTraits(self):
-        '''Balance teseting required, 
-		need to do this along with nouns and verbs,
-		perhaps upper tier enemies get a second adjective modifier, 
-		or even have different lists for 'badasses', 'bosses', 'mini-bosses', etc. (differnt enemy class?)
-		'''
+        """Balance teseting required,
+        need to do this along with nouns and verbs,
+        perhaps upper tier enemies get a second adjective modifier,
+        or even have different lists for 'badasses', 'bosses', 'mini-bosses', etc. (differnt enemy class?)
+        """
 
         if self.adjective == 0:  #Fierce
             self.speed += 1
@@ -247,9 +247,9 @@ class VariableEnemy:
 
     def getNounTraits(self):
         """These need to be balance tested to achieve better
-		drop rates, health and damage modifiers so that 
-		they can easily change the pace of the game and it isn't
-		just retexturing the enemies"""
+        drop rates, health and damage modifiers so that
+        they can easily change the pace of the game and it isn't
+        just retexturing the enemies"""
 
         if self.noun == 0:  #Goo
             self.color = Display.GOOGREEN
@@ -363,9 +363,9 @@ class VariableEnemy:
             return True
 
     """Written so that the Enemy may chase any object, not just the player
-		in doing so, we allow them to chase objects, perhaps chests or loot
-		they can destroy before the enemy is there? Also, if we want to implement
-		friendlies, this is a start"""
+        in doing so, we allow them to chase objects, perhaps chests or loot
+        they can destroy before the enemy is there? Also, if we want to implement
+        friendlies, this is a start"""
 
     def chaseObj(self, obj):
         self.shouldFlankPlayer()
@@ -441,12 +441,12 @@ class VariableEnemy:
         self.coin.setDrawInfo(self.inventory.coins, self.x, self.y)
 
     def shouldFlankPlayer(self):
-        '''if VariableEnemy.numberOfEnemies > 2:
-			chance = random.randint(1, 10)
-			if chance % 9 == 0:
+        """if VariableEnemy.numberOfEnemies > 2:
+            chance = random.randint(1, 10)
+    		if chance % 9 == 0:
 				self.shouldFlank = True
 			else:
-				self.shouldFlank = False'''
+				self.shouldFlank = False"""
         pass
 
     def damageOverTime(self, damage):

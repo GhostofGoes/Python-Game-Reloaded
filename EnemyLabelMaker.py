@@ -1,7 +1,7 @@
-'''The idea here is to only use one enemy class and make them highly extensible/variable based on 
-	what they get for adjectives, nouns, and verbs. Color will add even more variety. The best part about this,
-	is that a matching label class can be made to modify the single enemy class instead of creating new
-	enemies for each type '''
+"""The idea here is to only use one enemy class and make them highly extensible/variable based on
+    what they get for adjectives, nouns, and verbs. Color will add even more variety. The best part about this,
+    is that a matching label class can be made to modify the single enemy class instead of creating new
+    enemies for each type """
 
 
 #singleton...?
