@@ -51,8 +51,8 @@ class Spawnner():
 					self.container.append(functions.spawnEnemy(self.playerObj, self.x, self.y, self.adjective, self.noun, self.verb))
 					self.count = 0
 		if self.health <= 0:
-			print "Gate to hell closed!"
+			print("Gate to hell closed!")
 	
 	def damageOverTime(self, playerObj):
-		print "Spawner immune to DOT attacks"
+		print("Spawner immune to DOT attacks")
 		

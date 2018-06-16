@@ -39,7 +39,7 @@ class Game:
 			gameNotOver = self.runGame()
 
 		# Finishing up
-		print "GAME OVER"
+		print("GAME OVER")
 		self._log.info('GAME OVER')
 		functions.printPlayerStats()
 		self.restart()
@@ -65,7 +65,7 @@ class Game:
 				functions.gameTimer = 0
 				if self.playerObj.arrows < 10:
 					self.playerObj.arrows += 1
-					print "Magic quiver produced one arrow"
+					print("Magic quiver produced one arrow")
 			self.inputObj.update(self.playerObj, menuObject)
 			dungeonObj.update()
 			menuObject.update()

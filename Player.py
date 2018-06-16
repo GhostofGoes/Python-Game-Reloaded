@@ -119,13 +119,13 @@ class Player:
 						if functions.objCollision(projectile, enemy):
 							enemy.health -= projectile.damage
 							projectile.exists = False
-							print "%s hit for %s damage!" % (enemy.name, projectile.damage)
+							print("%s hit for %s damage!" % (enemy.name, projectile.damage))
 							if enemy.health <= 0:
 								enemy.death()
 								self.experience += 4
-								print "%s gained 4 Exp!" % (self.name) 
+								print("%s gained 4 Exp!" % (self.name)) 
 								self.rangeExp += 2
-								print "%s has gained 2 ranged exp!" % (self.name)
+								print("%s has gained 2 ranged exp!" % (self.name))
 				
 	
 	def movePlayer(self):
@@ -178,8 +178,8 @@ class Player:
 	def death(self):
 		self.logger.info('Player %s is dead', self.name)
 		self.isDead = True
-		print "Hero died..."
-		print "Game Over"
+		print("Hero died...")
+		print("Game Over")
 		
 	def updateToWeaponStats(self):
 		self.range += self.currentWeapon.range
@@ -216,27 +216,27 @@ class Player:
 			usedPotion = functions.playerPotions.pop()
 			if usedPotion.isHealth == True:
 				if self.health == self.maxHealth:
-					print "Well, that was dumb..."
+					print("Well, that was dumb...")
 				self.health += usedPotion.size
 				self.dot = False
 				if self.health >= self.maxHealth:
 					self.health = self.maxHealth
 			elif usedPotion.isStamina == True:
 				if self.stamina == maxStamina:
-					print "What a dummie..."
+					print("What a dummie...")
 				self.stamina += usedPotion.size
 				if self.stamina >= maxStamina:
 					self.stamina = maxStamina
-			print "Used a %s! %s potions left..." % (usedPotion.name, len(functions.playerPotions))
+			print("Used a %s! %s potions left..." % (usedPotion.name, len(functions.playerPotions)))
 		else:
-			print "No potions... buy some from NPC friendly for the low low price of 100 Gold!"
+			print("No potions... buy some from NPC friendly for the low low price of 100 Gold!")
 			
 	def damageOverTime(self, damage):
 		self.dot = True
 		
 	def takeEffectDamage(self):
 		if functions.gameTimer == 1:
-			print "Hero takes effect damage of 1!"
+			print("Hero takes effect damage of 1!")
 			self.dotCount -= 1
 			self.health -= 1
 			if self.dotCount <= 0:
@@ -247,9 +247,9 @@ class Player:
 			tempWeapon = self.currentWeapon
 			self.currentWeapon = functions.playerInventory.pop(0)
 			functions.playerInventory.append(tempWeapon)
-			print "Hero equipped %s" % (self.currentWeapon.name)
+			print("Hero equipped %s" % (self.currentWeapon.name))
 		else:
-			print "No other weapons!"
+			print("No other weapons!")
 			
 	#Level up the player. Simply give the player one new heart every 20 exp pts
 	def checkExperience(self):
@@ -258,15 +258,15 @@ class Player:
 			self.health = self.maxHealth
 			self.experience = 0
 			self.level += 1
-			print "Level gained!"
+			print("Level gained!")
 			
 		elif self.meleeExp >= 14:
-			print "Melee skill increased!"
+			print("Melee skill increased!")
 			self.damage += 1
 			self.meleeExp = 0
 		
 		elif self.rangeExp >= 14:
-			print "Ranged skill increased!"
+			print("Ranged skill increased!")
 			self.rangeDamage += 1
 			self.rangedWeapon.updateDamage()
 			self.rangeExp = 0

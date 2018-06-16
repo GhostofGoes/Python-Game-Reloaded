@@ -39,9 +39,9 @@ class Inventory:
 	def printInventory(self):
 		if self.items:
 			for item in self.items:
-				print "%s, in inventory" % item.name
+				print("%s, in inventory" % item.name)
 		if self.coins > 0:
-			print "riches! %s" % self.coins
+			print("riches! %s" % self.coins)
 	
 	#Pass it global container
 	def dropItems(self):

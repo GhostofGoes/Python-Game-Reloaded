@@ -33,7 +33,7 @@ class Shopkeeper(NPC.NPC):
 					self.gold -= 1
 					counter += 1
 			functions.playerCoins.append(gold)
-			print "Traded %s items for %s gold" % (counter, gold.value)
+			print("Traded %s items for %s gold" % (counter, gold.value))
 			
 		
 	def update(self):

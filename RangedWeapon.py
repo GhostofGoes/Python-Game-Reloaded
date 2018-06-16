@@ -54,7 +54,7 @@ class RangedWeapon:
 				if not self.owner.isPlayer():
 					if functions.objCollision(arrow, playerObj):
 						playerObj.health -= arrow.damage
-						print "Oh no! %s takes %s damage from an arrow!" % (playerObj.name, arrow.damage)
+						print("Oh no! %s takes %s damage from an arrow!" % (playerObj.name, arrow.damage))
 						arrow.exists = False
 				if not arrow.exists:
 					self.arrows.remove(arrow)

@@ -257,10 +257,10 @@ class Input:
 		elif action == RANGED_ATTACK:
 			if playerObj.arrows > 0:
 				playerObj.arrows -= 1
-				print "Firing!"
+				print("Firing!")
 				playerObj.rangedWeapon.shoot()
 			else:
-				print "No arrows!"
+				print("No arrows!")
 		elif action == CONTINIOUS_RANGED_ATTACK:
 			if pygame.time.get_ticks() > playerObj.lastFired + 500 and playerObj.arrows > 0:
 				playerObj.rangedWeapon.shoot()
@@ -268,9 +268,9 @@ class Input:
 				playerObj.arrows -= 1
 			else:
 				if playerObj.arrows < 1:
-					print "No arrows!"
+					print("No arrows!")
 				else:
-					print "Notching arrow!"
+					print("Notching arrow!")
 		elif action == SWITCH_WEAPON:
 			playerObj.cycleWeapon()
 		elif action == USE_POTION:

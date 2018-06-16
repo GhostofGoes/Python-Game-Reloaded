@@ -64,7 +64,7 @@ class Room:
 		self.hasSpawners = False
 		self.spawnnerlist = []
 		self.enemylist = []
-		for i in xrange(0, numSpawners):
+		for i in range(0, numSpawners):
 			self.hasSpawners = True
 			self.spawnnerlist.append(Spawnner.Spawnner(self.playerObj, self.enemylist))
 		Dungeon.numRooms += 1
@@ -81,7 +81,7 @@ class Room:
 	
 	def returnNumberOfFreeDoors(self):
 		total = 0
-		for i in xrange(0,4):
+		for i in range(0,4):
 			if self.doors[i] == -1:
 				total += 1
 		return total
@@ -106,8 +106,8 @@ class Room:
 		
 	def drawRoom(self):
 		Display.DISPLAYSURF.fill(self.color)
-		for x in xrange(0, Display.SCREEN_WIDTH, Display.TILE_SIZE):
-			for y in xrange(Display.GAME_SCREEN_START, Display.SCREEN_HEIGHT, Display.TILE_SIZE):
+		for x in range(0, Display.SCREEN_WIDTH, Display.TILE_SIZE):
+			for y in range(Display.GAME_SCREEN_START, Display.SCREEN_HEIGHT, Display.TILE_SIZE):
 				# upper wall
 				if y == Display.GAME_SCREEN_START: 
 					if x == 0: # northwest corner
@@ -167,11 +167,11 @@ class Dungeon:
 		self.menuObject = None
 		self.maxRooms = num
 		self.currRoomIndex = 0
-		for i in xrange(0, self.maxRooms):
+		for i in range(0, self.maxRooms):
 			self.listRooms.append(Room(self, Display.returnRandomColor(), random.randint(0,1)))
 			if self.numRooms > 1:
 				self.addRoomToDungeon(self.listRooms[self.numRooms - 1])
-		for j in xrange(0, self.maxRooms):
+		for j in range(0, self.maxRooms):
 			self.connectNeighboringRooms(self.listRooms[j])
 		#self.printAllDoors()
 		#self.printAllCords()
@@ -192,12 +192,12 @@ class Dungeon:
 		self.menuObject.dialogue = self.returnCurrentRoom().text
 	
 	def printAllDoors(self):
-		for i in xrange(0, self.numRooms):
-			print self.listDoors[i*4 : i*4 + 4]
+		for i in range(0, self.numRooms):
+			print(self.listDoors[i*4 : i*4 + 4])
 	
 	def printAllCords(self):
-		for i in xrange(0, self.numRooms):
-			print "(" + str(self.listRooms[i].x) + ", " + str(self.listRooms[i].y) + ")"
+		for i in range(0, self.numRooms):
+			print("(" + str(self.listRooms[i].x) + ", " + str(self.listRooms[i].y) + ")")
 	
 	def roomHasSpecificDoorFree(self, room, door):
 		if room.doors[door] == -1:
@@ -216,7 +216,7 @@ class Dungeon:
 					randInt = 0
 			
 	def roomHasFreeDoors(self, room):
-		for i in xrange(0, 4):
+		for i in range(0, 4):
 			if room.doors[i] == -1:
 				return True
 		return False
@@ -233,7 +233,7 @@ class Dungeon:
 	
 	def connectableRooms(self, room, door):
 		connectableRoomsList = []
-		for i in xrange(0, self.numRooms):
+		for i in range(0, self.numRooms):
 			if room.index != i and self.listDoors[room.index * 4 + door] == -1 and self.listDoors[i * 4 + self.oppositeDoor(door)] == -1:
 				connectableRoomsList.append(self.listRooms[i])
 		return connectableRoomsList
@@ -260,7 +260,7 @@ class Dungeon:
 			listOfConnectableRooms = self.connectableRooms(room1, door)
 			if len(listOfConnectableRooms) == 0:
 				# couldnt find a connecting room, which should be impossible
-				print "wtf"
+				print("wtf")
 				exit(1)
 			for room2 in listOfConnectableRooms:
 				self.assignRoomToGrid(room1, room2, door)
@@ -272,7 +272,7 @@ class Dungeon:
 					return
 	
 	def connectNeighboringRooms(self, room1):
-		for i in xrange(0, 4):
+		for i in range(0, 4):
 			if room1.doors[i] == -1:
 				room2 = None
 				if i == UP_DOOR:

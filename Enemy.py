@@ -101,7 +101,7 @@ class VariableEnemy:
 		
 		
 	def printName(self):
-		print "%s" % (self.name)
+		print("%s" % (self.name))
 		
 	def update(self):
 		self.rect = pygame.Rect(self.x, self.y, self.size, self.size)
@@ -154,7 +154,7 @@ class VariableEnemy:
 		
 	def dropLoot(self):
 		self.currentWeapon.dropWeapon(self.x, self.y)
-		print "Dropped"
+		print("Dropped")
 		self.inventory.dropItems()
 		functions.worldCoins.append(self.coin)
 		self.coin.setDrawInfo(self.inventory.coins, self.x, self.y)
@@ -397,7 +397,7 @@ class VariableEnemy:
 		
 	def dropLoot(self):
 		self.currentWeapon.dropWeapon(self.x, self.y)
-		print "Dropped"
+		print("Dropped")
 		self.inventory.dropItems()
 		functions.worldCoins.append(self.coin)
 		self.coin.setDrawInfo(self.inventory.coins, self.x, self.y)
@@ -418,7 +418,7 @@ class VariableEnemy:
 		
 	def takeEffectDamage(self):
 		if functions.gameTimer == 1:
-			print "Enemy takes effect damage of 1!"
+			print("Enemy takes effect damage of 1!")
 			self.health -= 1
 			self.dotCount -= 1
 			if self.dotCount == 0:

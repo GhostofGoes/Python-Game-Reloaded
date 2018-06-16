@@ -43,7 +43,7 @@ class Menu:
 		Display.DISPLAYSURF.blit(self.dialogue_sprite, pygame.Rect(0, Display.DIALOGUE_BOX_START, Display.SCREEN_WIDTH, Display.GAME_SCREEN_START))	
 		
 		myfont = pygame.font.SysFont("monospace", 15)
-		for x in xrange(0, len(self.dialogue), 61):
+		for x in range(0, len(self.dialogue), 61):
 			text = myfont.render(self.dialogue[x : x+61], 1, Display.WHITE)
 			Display.DISPLAYSURF.blit(text, (15, Display.DIALOGUE_BOX_START + 10 + 15*x/61))
 

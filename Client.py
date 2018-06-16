@@ -19,7 +19,7 @@ class GameClient:
     def on_message(self, sender, msg):
         if msg.MessageTypeID == Network.ChatMessage.MessageTypeID:
             self._log.info('Chat message from %s: \"%s\"', msg.player_from, msg.message)
-            print "(%s) %s: %s" % (msg.timestamp, msg.player_from, msg.message)
+            print("(%s) %s: %s" % (msg.timestamp, msg.player_from, msg.message))
 
     def send_chat_message(self, player_from, message):
         msg                     = Network.ChatMessage()
@@ -37,7 +37,7 @@ class GameClient:
         try:
             self._client.connect(host)
             return True
-        except client.ClientError, e:
+        except client.ClientError as e:
             self._log.exception(e)
             self._log.info('Could not connect to server %s!', host)
             return False

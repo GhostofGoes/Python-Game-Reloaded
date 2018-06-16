@@ -179,7 +179,7 @@ class MeleeWeapon:
 				pass #Shouldn't happen
 
 	def printName(self):
-		print "%s" % (self.name)	
+		print("%s" % (self.name))	
 	
 	def dropWeapon(self, x, y):
 		self.originx = x 

@@ -77,9 +77,9 @@ def printPlayerStats():
 	if playerCoins:
 		for coin in playerCoins:
 			total += coin.value
-	print "%s gold held!" % total
-	print "%s enemies slain by Hero" % worldEnemiesKilled
-	print "Hero sucked %s times!" % worldDeaths
+	print("%s gold held!" % total)
+	print("%s enemies slain by Hero" % worldEnemiesKilled)
+	print("Hero sucked %s times!" % worldDeaths)
 	
 def updateItems(player):
 	if worldInventory:
@@ -87,7 +87,7 @@ def updateItems(player):
 				item.drawAsLoot()
 				if player.pickup:
 					if objCollision(player, item):
-						print "Hero picked %s up!" % item.name
+						print("Hero picked %s up!" % item.name)
 						worldInventory.remove(item)
 						item.pickup()
 						
@@ -97,7 +97,7 @@ def updateCoins(player):
 			coin.drawSelf()
 			if player.pickup:
 				if objCollision(player, coin):
-					print "Hero acquired %s gold!" % (coin.value)
+					print("Hero acquired %s gold!" % (coin.value))
 					worldCoins.remove(coin)
 					coin.pickup()
 
