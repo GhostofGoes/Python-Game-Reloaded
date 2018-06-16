@@ -21,7 +21,8 @@ class GameServer:
         self._log.debug('Initialized GameServer')
 
     def on_connect_request(self, sender, args):
-        self._log.debug('on_connect_request: sender = %s, args = %s', sender, args)
+        self._log.debug('on_connect_request: sender = %s, args = %s', sender,
+                        args)
 
     def on_message(self, sender, msg):
         self._log.debug('on_message: sender = %s, msg = %s', sender, msg)
@@ -29,7 +30,9 @@ class GameServer:
             if msg.player_to == 'all':
                 self._server.send_reliable_message_to_all(msg)
             else:
-                p = self._server.get_peer_by_address(msg.player_to) # doing this by address for now, need to handle people typing player names
+                p = self._server.get_peer_by_address(
+                    msg.player_to
+                )  # doing this by address for now, need to handle people typing player names
                 p.send_reliable_message(msg)
 
         elif msg:
@@ -38,7 +41,7 @@ class GameServer:
             self._log.error('Empty message from client %s', sender)
 
     def run(self):
-        self._server.listen(('', self.port)) # TODO: handle exception?
+        self._server.listen(('', self.port))  # TODO: handle exception?
         self._log.info('Listening on port %d', self.port)
 
         while True:
@@ -51,7 +54,8 @@ class GameServer:
 
 if __name__ == '__main__':
     logging.basicConfig(filename='Python-Game-Server.log', level=logging.DEBUG)
-    logging.info('Beginning of logging for run starting at %s', strftime("%Y-%m-%d %H:%M:%S"))
+    logging.info('Beginning of logging for run starting at %s',
+                 strftime("%Y-%m-%d %H:%M:%S"))
     logging.info()
     server = GameServer()
     server.run()

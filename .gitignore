@@ -3,6 +3,7 @@
 *.log
 screenshot.tga
 desktop.ini
+pycharmvenv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

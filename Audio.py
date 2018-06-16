@@ -3,6 +3,7 @@
 from pygame.mixer import music
 import logging
 
+
 class GameAudio:
     def __init__(self):
         self.volume = 1

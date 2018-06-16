@@ -32,8 +32,8 @@ GOLD = (246, 255, 0)
 
 ROOM_COLORS = [RED, ORANGE, YELLOW, GREEN, BLUE, TEAL, PURPLE, BROWN, GREY]
 
-QUADRANTX = int(SCREEN_WIDTH/2)
-QUADRANTY = int(SCREEN_HEIGHT/2)
+QUADRANTX = int(SCREEN_WIDTH / 2)
+QUADRANTY = int(SCREEN_HEIGHT / 2)
 
 PLAYER_WIDTH = 48
 PLAYER_HEIGHT = 48
@@ -41,7 +41,7 @@ PLAYER_HEIGHT = 48
 is_fullscreen = 0
 
 #pygame.init()
-FPS = 30 # Frames Per Second
+FPS = 30  # Frames Per Second
 FPSCLOCK = pygame.time.Clock()
 
 # TODO: this is where we'd start on the whole resizing business
@@ -50,17 +50,21 @@ FPSCLOCK = pygame.time.Clock()
 # This can also slow things down if it has to emulate the depth on a system.
 # http://www.pygame.org/docs/ref/display.html#pygame.display.set_mode
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
 #pygame.display.set_caption('Game')
 
-	
+
 def returnRandomColor():
-	randNum = random.randint(0, len(ROOM_COLORS) - 1)
-	return ROOM_COLORS[randNum]
+    randNum = random.randint(0, len(ROOM_COLORS) - 1)
+    return ROOM_COLORS[randNum]
+
 
 def fullscreen():
-	global DISPLAYSURF
-	DISPLAYSURF = pygame.display.set_mode((0,0), pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF )
+    global DISPLAYSURF
+    DISPLAYSURF = pygame.display.set_mode(
+        (0, 0), pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF)
+
 
 def resetWindow():
-	global DISPLAYSURF
-	DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    global DISPLAYSURF
+    DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))

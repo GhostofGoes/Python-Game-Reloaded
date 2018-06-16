@@ -11,21 +11,24 @@ import Game
 class GameClient:
     def __init__(self):
         self.running = 1
-        self._client = client.Client() # Note: _ makes it clear this is "private", and not to be used outside of the class
+        self._client = client.Client(
+        )  # Note: _ makes it clear this is "private", and not to be used outside of the class
         self._client.OnMessage += self.on_message
         self._log = logging.getLogger(__name__)
         self._log.debug('Initialized GameClient')
 
     def on_message(self, sender, msg):
         if msg.MessageTypeID == Network.ChatMessage.MessageTypeID:
-            self._log.info('Chat message from %s: \"%s\"', msg.player_from, msg.message)
-            print("(%s) %s: %s" % (msg.timestamp, msg.player_from, msg.message))
+            self._log.info('Chat message from %s: \"%s\"', msg.player_from,
+                           msg.message)
+            print(
+                "(%s) %s: %s" % (msg.timestamp, msg.player_from, msg.message))
 
     def send_chat_message(self, player_from, message):
-        msg                     = Network.ChatMessage()
-        msg.player_from.value   = player_from
-        msg.message.value       = message
-        msg.timestamp.value     = strftime("%H:%M:%S")
+        msg = Network.ChatMessage()
+        msg.player_from.value = player_from
+        msg.message.value = message
+        msg.timestamp.value = strftime("%H:%M:%S")
         self._log.info('Sending chat message: \"%s\"', message)
         try:
             self._client.send_reliable_message(msg)
@@ -42,7 +45,6 @@ class GameClient:
             self._log.info('Could not connect to server %s!', host)
             return False
 
-
     def run(self):
         self._log.debug('run()')
         if not self.connect():
@@ -51,9 +53,11 @@ class GameClient:
 
         #Game.main()
 
+
 if __name__ == '__main__':
     logging.basicConfig(filename='Python-Game-Client.log', level=logging.DEBUG)
-    logging.info('Beginning of logging for run starting at %s', strftime("%Y-%m-%d %H:%M:%S"))
+    logging.info('Beginning of logging for run starting at %s',
+                 strftime("%Y-%m-%d %H:%M:%S"))
     client = GameClient()
     client.run()
     logging.info('Client finished\n\n\n')
