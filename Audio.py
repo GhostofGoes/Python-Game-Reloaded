@@ -1,7 +1,10 @@
 """ Music and audio stuff """
 
-from pygame.mixer import music
 import logging
+
+from pygame.mixer import music
+
+import functions
 
 
 class GameAudio:
@@ -25,7 +28,11 @@ class GameAudio:
 
     def play_next_song(self):
         self._logger.info('Playing next song in queue')
-        music.play(-1)
+        if functions.DEBUG == 2:
+            return
+        else:
+            music.play(-1)
 
     def play_random_song(self):
         self._logger.info('Playing a random song')
+        # TODO: implement

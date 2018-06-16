@@ -3,9 +3,12 @@
 import logging
 import math
 import pygame
-from sys import exit
+import sys
 from os import path
 from Display import DISPLAYSURF
+
+# Set level of debugging
+DEBUG = 0
 
 IMAGE_DIR = 'images'
 
@@ -13,8 +16,8 @@ IMAGE_DIR = 'images'
 worldInventory = []
 worldCoins = []
 playerCoins = []
-playerInventory = [
-]  #This is done in the player class, but might be smoother here...
+# TODO (?): This is done in the player class, but might be smoother here...
+playerInventory = []
 playerPotions = []
 
 # Keep track of player stats
@@ -117,12 +120,12 @@ def load_image(image_name):
 
 
 def screenshot(filename='screenshot.tga'):
-    #TODO: counter for screenshots
+    # TODO: counter for screenshots
     pygame.image.save(DISPLAYSURF, filename)
 
 
-def terminate():
-    """ Terminates the game utterly and completly """
-    logging.info('User quit game\n\n\n')
-    pygame.quit()
-    exit()
+# def terminate(exit_code=0):
+#     """ Terminates the game utterly and completly """
+#     logging.info('User quit game\n\n\n')
+#     pygame.quit()
+#     sys.exit(exit_code)

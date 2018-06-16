@@ -2,8 +2,9 @@
 
 import pygame
 
-from sys import executable, argv
-from os import execl
+# from sys import executable, argv
+# from os import execl
+import sys
 import logging
 
 import Display
@@ -15,6 +16,11 @@ import Audio
 import functions
 
 GAME_ICON = 'slithering_python.png'  # 'player_down1.png'
+
+
+CONTINUE_GAME = 0
+RESTART_GAME = 1
+QUIT_GAME = 2
 
 
 class Game:
@@ -36,21 +42,22 @@ class Game:
         self.audioObj.load_music('music\Damnation.mp3')
         self.audioObj.play_next_song()
         # Run the game
-        gameNotOver = True
-        while gameNotOver:
-            gameNotOver = self.runGame()
+        game_status = CONTINUE_GAME
+        while game_status == CONTINUE_GAME:
+            game_status = self.runGame()
+        return game_status
 
         # Finishing up
-        print("GAME OVER")
-        self._log.info('GAME OVER')
-        functions.printPlayerStats()
-        self.restart()
+        # print("GAME OVER")
+        # self._log.info('GAME OVER')
+        # functions.printPlayerStats()
+        # self.restart()
 
-    def restart(self):
-        self._log.debug('restart')
-        execl(
-            executable, executable, *argv
-        )  # TODO: do this properly, otherwise it will crash and burn badly
+    # def restart(self):
+    #     self._log.debug('restart')
+    #     execl(
+    #         executable, executable, *argv
+    #     )  # TODO: do this properly, otherwise it will crash and burn badly
 
     def runGame(self):
         self.playerObj = Player.Player()
@@ -71,6 +78,11 @@ class Game:
                     self.playerObj.arrows += 1
                     print("Magic quiver produced one arrow")
             self.inputObj.update(self.playerObj, menuObject)
+            if self.inputObj.quit_requested:
+                return QUIT_GAME
+            elif self.inputObj.restart_requested:
+                return RESTART_GAME
+
             dungeonObj.update()
             menuObject.update()
             self.playerObj.update()
@@ -95,7 +107,7 @@ class Game:
 
             if self.playerObj.isDead:
                 self._log.info('Player %s is dead', self.playerObj.name)
-                return False
+                return RESTART_GAME
 
             pygame.display.update()
             Display.FPSCLOCK.tick(Display.FPS)
@@ -108,6 +120,26 @@ if __name__ == '__main__':
     from time import strftime
     logging.info('Beginning of logging for run starting at %s',
                  strftime("%Y-%m-%d %H:%M:%S"))
-    game = Game()
-    game.run()
+
+    # TODO: cli arguments
+    if len(sys.argv) > 1:
+        functions.DEBUG = int(sys.argv[1])
+
+    # TODO: this is not properly resetting the game
+    #   There is global state with enemies, rooms, and such that isn't getting reset
+    while True:
+        game = Game()
+        _status = game.run()
+        if _status == RESTART_GAME:
+            print("GAME OVER")
+            logging.info('GAME OVER')
+            functions.printPlayerStats()
+            del game
+        elif _status == QUIT_GAME:
+            break
+        else:
+            break
+
+    pygame.quit()
     logging.debug('Finished Game\n\n\n')
+    # TODO: exit codes other than the implied 0

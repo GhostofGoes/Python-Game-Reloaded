@@ -38,6 +38,7 @@ class Player:
     ]
 
     def __init__(self, player_name="Hero"):
+        self.log = logging.getLogger(__name__)
         self.x = Display.TILE_SIZE
         self.y = Display.GAME_SCREEN_START + Display.TILE_SIZE
         self.rect = pygame.Rect(self.x, self.y, PLAYER_WIDTH, PLAYER_HEIGHT)
@@ -87,13 +88,13 @@ class Player:
         self.updateToWeaponStats()
         self.attackRect = pygame.Rect(self.x, self.y, self.currentWeapon.range,
                                       self.currentWeapon.range)
-        # if not isinstance(self.range, int):
-        #     import pudb
-        #     pudb.set_trace()
-        # print(self.range)
+        # TODO: sometimes self.range is being set to a float here...figure out why
+        if not isinstance(self.range, int):
+            self.log.warning("Player range set to invalid type %s. Value: "
+                                "%s", type(self.range), str(self.range))
+            self.range = int(self.range)
         self.circle = pygame.draw.circle(Display.DISPLAYSURF, Display.BLACK, (self.collisionx, self.collisiony), self.range, 1)
-        self.logger = logging.getLogger(__name__)
-        self.logger.debug('Player %s Initialized', self.name)
+        self.log.debug('Player %s Initialized', self.name)
 
     def update(self):
         # update room if need be
@@ -195,7 +196,7 @@ class Player:
             return True
 
     def death(self):
-        self.logger.info('Player %s is dead', self.name)
+        self.log.info('Player %s is dead', self.name)
         self.isDead = True
         print("Hero died...")
         print("Game Over")

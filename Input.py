@@ -102,6 +102,8 @@ class Input:
             "JOY_HAT_LEFT": 0
         }
         self.players = []
+        self.quit_requested = False
+        self.restart_requested = False
         self._log = logging.getLogger(__name__)
         self._log.debug('Initialized Input')
 
@@ -124,9 +126,8 @@ class Input:
     def update(self, playerObj, menuObject):
         """ Pulls events from the event queue """
         if self.num_controllers < joystick.get_count():
-            self._log.error(
-                'A controller disconnected unexpectantly! Attempting to reinitialize all controllers...'
-            )
+            self._log.error('A controller disconnected unexpectantly! '
+                            'Attempting to reinitialize all controllers...')
             self.initialize_controllers()
 
         # Input event handler
@@ -182,12 +183,14 @@ class Input:
                 elif event.key == K_e:
                     action = self.action_mappings["KEY_UP_E"]
 
-            elif event.type == JOYAXISMOTION:  # TODO: multiple controllers
+            # TODO: multiple controllers
+            elif event.type == JOYAXISMOTION:
                 self._axis_movement(0, playerObj)
                 #for con in range(self.num_controllers):
                 #	self._axis_movement(con, self.players[con])
 
-            elif event.type == JOYBUTTONDOWN:  # TODO: non 10-button controller handling
+            # TODO: non 10-button controller handling
+            elif event.type == JOYBUTTONDOWN:
                 if self.controllers[0].get_button(0):  # 'A'
                     action = self.action_mappings["JOY_A"]
                 elif self.controllers[0].get_button(1):  # 'B'
@@ -217,9 +220,10 @@ class Input:
                         'Controller has more than 10 buttons! OMG!')
 
             elif event.type == JOYBUTTONUP:
-                action = NO_PICKUP_OBJECT  # ugly ass hack
+                action = NO_PICKUP_OBJECT  # TODO: ugly ass hack
 
-            elif event.type == JOYHATMOTION:  # TODO: non 1-hat controller handling
+            # TODO: non 1-hat controller handling
+            elif event.type == JOYHATMOTION:
                 hat = self.controllers[0].get_hat(0)
                 if hat == HAT_UP:
                     action = self.action_mappings["JOY_HAT_UP"]
@@ -319,10 +323,12 @@ class Input:
 
         elif action == RESTART_MATCH:
             self._log.info('Restarting match')
-            playerObj.isDead = True
+            self.restart_requested = True
+            # playerObj.isDead = True
         elif action == QUIT_GAME:
             self._log.info('Quitting game')
-            functions.terminate()
+            self.quit_requested = True
+            # functions.terminate()
 
     # TODO: axis movement mapping
     def _axis_movement(self, con, playerObj):
