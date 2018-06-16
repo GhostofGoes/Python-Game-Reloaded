@@ -7,7 +7,7 @@ import math
 import Weapon
 import Combat
 import RangedWeapon
-import functions
+import Utils
 
 # player variables defaults
 PLAYER_X = 0
@@ -19,22 +19,22 @@ PLAYER_SPEED = 15
 
 class Player:
     player_down = [
-        functions.load_image('player_down1.png'),
-        functions.load_image('player_down2.png')
+        Utils.load_image('player_down1.png'),
+        Utils.load_image('player_down2.png')
     ]
     player_up = [
-        functions.load_image('player_up1.png'),
-        functions.load_image('player_up2.png')
+        Utils.load_image('player_up1.png'),
+        Utils.load_image('player_up2.png')
     ]
     player_right = [
-        functions.load_image('player_right1.png'),
-        functions.load_image('player_right2.png')
+        Utils.load_image('player_right1.png'),
+        Utils.load_image('player_right2.png')
     ]
     player_left = [
         pygame.transform.flip(
-            functions.load_image('player_right1.png'), True, False),
+            Utils.load_image('player_right1.png'), True, False),
         pygame.transform.flip(
-            functions.load_image('player_right2.png'), True, False)
+            Utils.load_image('player_right2.png'), True, False)
     ]
 
     def __init__(self, player_name="Hero"):
@@ -135,7 +135,7 @@ class Player:
             for projectile in self.rangedWeapon.arrows:
                 for enemy in self.dungeonObj.returnCurrentRoom().enemylist:
                     if projectile.exists == True:
-                        if functions.objCollision(projectile, enemy):
+                        if Utils.objCollision(projectile, enemy):
                             enemy.health -= projectile.damage
                             projectile.exists = False
                             print("%s hit for %s damage!" %
@@ -247,8 +247,8 @@ class Player:
                 0)
 
     def usePotion(self):
-        if functions.playerPotions:
-            usedPotion = functions.playerPotions.pop()
+        if Utils.playerPotions:
+            usedPotion = Utils.playerPotions.pop()
             if usedPotion.isHealth == True:
                 if self.health == self.maxHealth:
                     print("Well, that was dumb...")
@@ -263,7 +263,7 @@ class Player:
                 if self.stamina >= maxStamina:
                     self.stamina = maxStamina
             print("Used a %s! %s potions left..." %
-                  (usedPotion.name, len(functions.playerPotions)))
+                  (usedPotion.name, len(Utils.playerPotions)))
         else:
             print(
                 "No potions... buy some from NPC friendly for the low low price of 100 Gold!"
@@ -273,7 +273,7 @@ class Player:
         self.dot = True
 
     def takeEffectDamage(self):
-        if functions.gameTimer == 1:
+        if Utils.gameTimer == 1:
             print("Hero takes effect damage of 1!")
             self.dotCount -= 1
             self.health -= 1
@@ -281,10 +281,10 @@ class Player:
                 self.dot = False
 
     def cycleWeapon(self):
-        if functions.playerInventory:
+        if Utils.playerInventory:
             tempWeapon = self.currentWeapon
-            self.currentWeapon = functions.playerInventory.pop(0)
-            functions.playerInventory.append(tempWeapon)
+            self.currentWeapon = Utils.playerInventory.pop(0)
+            Utils.playerInventory.append(tempWeapon)
             print("Hero equipped %s" % (self.currentWeapon.name))
         else:
             print("No other weapons!")

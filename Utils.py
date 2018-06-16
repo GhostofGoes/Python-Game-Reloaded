@@ -2,9 +2,10 @@
 
 import logging
 import math
-import pygame
-import sys
+
 from os import path
+import pygame
+
 from Display import DISPLAYSURF
 
 # Set level of debugging
@@ -60,8 +61,12 @@ def objCollision(obj1, obj2):
         return True
 
 
-def rectCollision(rect1, rect2):  # TODO: clean this up
-    if rect1.x >= rect2.x and rect1.x <= rect2.x + rect2.width and rect1.y >= rect2.y and rect1.y <= rect2.y + rect2.height or rect2.x >= rect1.x and rect2.x <= rect1.x + rect1.width and rect2.y >= rect1.y and rect2.y <= rect1.y + rect1.height:
+def rectCollision(rect1, rect2):
+    # TODO: clean this up
+    if rect1.x >= rect2.x and rect1.x <= rect2.x + rect2.width \
+            and rect1.y >= rect2.y and rect1.y <= rect2.y + rect2.height \
+            or rect2.x >= rect1.x and rect2.x <= rect1.x + rect1.width \
+            and rect2.y >= rect1.y and rect2.y <= rect1.y + rect1.height:
         return True
 
 
@@ -122,10 +127,3 @@ def load_image(image_name):
 def screenshot(filename='screenshot.tga'):
     # TODO: counter for screenshots
     pygame.image.save(DISPLAYSURF, filename)
-
-
-# def terminate(exit_code=0):
-#     """ Terminates the game utterly and completly """
-#     logging.info('User quit game\n\n\n')
-#     pygame.quit()
-#     sys.exit(exit_code)

@@ -1,11 +1,9 @@
 """ Main game logic. Where the magic happens. """
 
-import pygame
-
-# from sys import executable, argv
-# from os import execl
 import sys
 import logging
+
+import pygame
 
 import Display
 import Player
@@ -13,10 +11,9 @@ from Input import Input
 from Room import Dungeon
 import Menu
 import Audio
-import functions
+import Utils
 
-GAME_ICON = 'slithering_python.png'  # 'player_down1.png'
-
+GAME_ICON = 'slithering_python.png'
 
 CONTINUE_GAME = 0
 RESTART_GAME = 1
@@ -27,7 +24,7 @@ class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_icon(
-            pygame.transform.scale(functions.load_image(GAME_ICON), (32, 32)))
+            pygame.transform.scale(Utils.load_image(GAME_ICON), (32, 32)))
         pygame.display.set_caption('Python-Game')
         self.playerObj = Player.Player()
         self.audioObj = Audio.GameAudio()
@@ -47,33 +44,22 @@ class Game:
             game_status = self.runGame()
         return game_status
 
-        # Finishing up
-        # print("GAME OVER")
-        # self._log.info('GAME OVER')
-        # functions.printPlayerStats()
-        # self.restart()
-
-    # def restart(self):
-    #     self._log.debug('restart')
-    #     execl(
-    #         executable, executable, *argv
-    #     )  # TODO: do this properly, otherwise it will crash and burn badly
-
     def runGame(self):
         self.playerObj = Player.Player()
         dungeonObj = Dungeon(self.playerObj, 10)
         menuObject = Menu.Menu(self.playerObj, dungeonObj)
-        self.playerObj.dungeonObj = dungeonObj  # temporary, need a better way to pass dungeon info to playerobj
-        dungeonObj.playerObj = self.playerObj  #This line and the last are hella confusing....
+        # TODO: temporary, need a better way to pass dungeon info to playerobj
+        self.playerObj.dungeonObj = dungeonObj
+        dungeonObj.playerObj = self.playerObj  # TODO: This line and the last are hella confusing....
         dungeonObj.menuObject = menuObject
         self._log.debug('Finished initializations for runGame')
 
         while True:
-            if functions.paused:
-                functions.pauseMenu()
-                functions.paused = False
-            if functions.gameTimer == 30:
-                functions.gameTimer = 0
+            if Utils.paused:
+                Utils.pauseMenu()
+                Utils.paused = False
+            if Utils.gameTimer == 30:
+                Utils.gameTimer = 0
                 if self.playerObj.arrows < 10:
                     self.playerObj.arrows += 1
                     print("Magic quiver produced one arrow")
@@ -102,8 +88,8 @@ class Game:
                 for enemy in dungeonObj.returnCurrentRoom().enemylist:
                     enemy.update()
 
-            functions.updateItems(self.playerObj)
-            functions.updateCoins(self.playerObj)
+            Utils.updateItems(self.playerObj)
+            Utils.updateCoins(self.playerObj)
 
             if self.playerObj.isDead:
                 self._log.info('Player %s is dead', self.playerObj.name)
@@ -111,7 +97,7 @@ class Game:
 
             pygame.display.update()
             Display.FPSCLOCK.tick(Display.FPS)
-            functions.gameTimer += 1
+            Utils.gameTimer += 1
 
 
 if __name__ == '__main__':
@@ -123,17 +109,18 @@ if __name__ == '__main__':
 
     # TODO: cli arguments
     if len(sys.argv) > 1:
-        functions.DEBUG = int(sys.argv[1])
+        Utils.DEBUG = int(sys.argv[1])
 
     # TODO: this is not properly resetting the game
     #   There is global state with enemies, rooms, and such that isn't getting reset
+    # TODO: refactor this with networking in mind
     while True:
         game = Game()
         _status = game.run()
         if _status == RESTART_GAME:
             print("GAME OVER")
             logging.info('GAME OVER')
-            functions.printPlayerStats()
+            Utils.printPlayerStats()
             del game
         elif _status == QUIT_GAME:
             break

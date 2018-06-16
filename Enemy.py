@@ -9,7 +9,7 @@ import Weapon
 import RangedWeapon
 import Inventory
 import Coin
-import functions
+import Utils
 
 #ADJECTIVE BASE TRAITS
 SPEED = 2  #playerObj/2
@@ -28,18 +28,18 @@ class VariableEnemy:
     numberOfEnemies = 0
 
     # sprite library
-    outline_sprite = functions.load_image('enemy_outline.png')
-    friendly_sprite = functions.load_image('friendly.png')
-    fierce_sprite = functions.load_image('fierce.png')
-    perceptive_sprite = functions.load_image('perceptive.png')
-    rich_sprite = functions.load_image('rich.png')
+    outline_sprite = Utils.load_image('enemy_outline.png')
+    friendly_sprite = Utils.load_image('friendly.png')
+    fierce_sprite = Utils.load_image('fierce.png')
+    perceptive_sprite = Utils.load_image('perceptive.png')
+    rich_sprite = Utils.load_image('rich.png')
     disgusting_sprite = [
-        functions.load_image('flys1.png'),
-        functions.load_image('flys2.png')
+        Utils.load_image('flys1.png'),
+        Utils.load_image('flys2.png')
     ]
     polluting_sprite = [
-        functions.load_image('polluting1.png'),
-        functions.load_image('polluting2.png')
+        Utils.load_image('polluting1.png'),
+        Utils.load_image('polluting2.png')
     ]
 
     #Note that this has default values if we don't pass it stuff. The "stuff" comes from the spawner calling it, allowing for types of spawners
@@ -107,7 +107,7 @@ class VariableEnemy:
         self.updateInventory()
 
     def rangedAttack(self):
-        if functions.gameTimer == self.reload:
+        if Utils.gameTimer == self.reload:
             self.rangedWeapon.aimAtPlayer(self.playerObj)
             self.rangedWeapon.attackPlayer()
         else:
@@ -147,7 +147,7 @@ class VariableEnemy:
             return True
 
     def death(self):
-        functions.worldEnemiesKilled += 1
+        Utils.worldEnemiesKilled += 1
         self.isDead = True
         self.dropLoot()
 
@@ -172,7 +172,7 @@ class VariableEnemy:
         self.currentWeapon.dropWeapon(self.x, self.y)
         print("Dropped")
         self.inventory.dropItems()
-        functions.worldCoins.append(self.coin)
+        Utils.worldCoins.append(self.coin)
         self.coin.setDrawInfo(self.inventory.coins, self.x, self.y)
 
     def getAdjectiveTraits(self):
@@ -411,7 +411,7 @@ class VariableEnemy:
             self.y -= self.speed
 
     def death(self):
-        functions.worldEnemiesKilled += 1
+        Utils.worldEnemiesKilled += 1
         self.isDead = True
         self.dropLoot()
         "I died"
@@ -437,7 +437,7 @@ class VariableEnemy:
         self.currentWeapon.dropWeapon(self.x, self.y)
         print("Dropped")
         self.inventory.dropItems()
-        functions.worldCoins.append(self.coin)
+        Utils.worldCoins.append(self.coin)
         self.coin.setDrawInfo(self.inventory.coins, self.x, self.y)
 
     def shouldFlankPlayer(self):
@@ -453,7 +453,7 @@ class VariableEnemy:
         self.dot = True
 
     def takeEffectDamage(self):
-        if functions.gameTimer == 1:
+        if Utils.gameTimer == 1:
             print("Enemy takes effect damage of 1!")
             self.health -= 1
             self.dotCount -= 1

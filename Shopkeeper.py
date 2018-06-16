@@ -1,5 +1,5 @@
 #shopkeeper sells stuff to hero. For gold. Sweet sweet gold....
-import functions
+import Utils
 import NPC
 import random
 import Coin
@@ -19,17 +19,17 @@ class Shopkeeper(NPC.NPC):
         pass
 
     def trade(self):
-        if functions.playerInventory:
+        if Utils.playerInventory:
             gold = Coin.Coin()
             counter = 0
-            for item in functions.playerInventory:
+            for item in Utils.playerInventory:
                 if self.gold >= 0:
                     self.store.append(item)
-                    functions.playerInventory.remove(item)
+                    Utils.playerInventory.remove(item)
                     gold.value += random.randint(1, 3)
                     self.gold -= 1
                     counter += 1
-            functions.playerCoins.append(gold)
+            Utils.playerCoins.append(gold)
             print("Traded %s items for %s gold" % (counter, gold.value))
 
     def update(self):

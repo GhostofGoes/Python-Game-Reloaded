@@ -2,7 +2,7 @@ import Enemy
 import random
 import pygame
 import Display
-import functions
+import Utils
 import Potions
 
 
@@ -43,18 +43,18 @@ class Spawnner():
         p = Potions.Potion()
         p.setDrawInfo(self.x, self.y)
         p.setToHealthPotion()
-        functions.worldInventory.append(p)
+        Utils.worldInventory.append(p)
         self.isDead = True
 
     def update(self):
         if self.health > 0:
-            if functions.gameTimer == 1:
+            if Utils.gameTimer == 1:
                 self.count += 1
                 if self.count == 3:
                     self.container.append(
-                        functions.spawnEnemy(self.playerObj, self.x, self.y,
-                                             self.adjective, self.noun,
-                                             self.verb))
+                        Utils.spawnEnemy(self.playerObj, self.x, self.y,
+                                         self.adjective, self.noun,
+                                         self.verb))
                     self.count = 0
         if self.health <= 0:
             print("Gate to hell closed!")

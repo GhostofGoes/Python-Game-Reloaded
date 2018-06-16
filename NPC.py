@@ -1,11 +1,11 @@
 import pygame
 
 import Display
-import functions
+import Utils
 
 
 class NPC:
-    NPC_sprite = functions.load_image('friendly.png')
+    NPC_sprite = Utils.load_image('friendly.png')
 
     def __init__(self, x, y, roomObj, text):
         self.dialogue = text
@@ -24,7 +24,7 @@ class NPC:
             self.roomObj.text = ""
 
     def checkPlayerCollision(self):
-        if functions.objCollision(self, self.roomObj.playerObj):
+        if Utils.objCollision(self, self.roomObj.playerObj):
             return True
 
     def drawNPC(self):

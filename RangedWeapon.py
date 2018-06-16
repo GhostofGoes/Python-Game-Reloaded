@@ -5,8 +5,9 @@ they show a reticle (small dot for now)
 on their target, and fire in a straight line
 """
 import pygame
+
+import Utils
 import Display
-import functions
 import Projectile
 
 
@@ -58,7 +59,7 @@ class RangedWeapon:
         if self.arrows:
             for arrow in self.arrows:
                 if not self.owner.isPlayer():
-                    if functions.objCollision(arrow, playerObj):
+                    if Utils.objCollision(arrow, playerObj):
                         playerObj.health -= arrow.damage
                         print("Oh no! %s takes %s damage from an arrow!" %
                               (playerObj.name, arrow.damage))

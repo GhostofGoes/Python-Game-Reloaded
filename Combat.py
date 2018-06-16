@@ -1,11 +1,11 @@
-import functions
+import Utils
 
 
 def attack(attacker, defender,
            isPlayerAttacking):  # TODO: iWhere is isPlayerAttacking being used
     # use player's attack rectangle
     if attacker.name == "Hero":
-        if functions.rectCollision(attacker.attackRect, defender.rect):
+        if Utils.rectCollision(attacker.attackRect, defender.rect):
             if checkForEffect(attacker):
                 applyEffect(attacker, defender)
             defender.health -= attacker.damage
@@ -21,7 +21,7 @@ def attack(attacker, defender,
             print("4 EXP gained!")
             print("2 Melee EXP gained!")
     else:
-        if functions.rectCollision(attacker.rect, defender.rect):
+        if Utils.rectCollision(attacker.rect, defender.rect):
             if checkForEffect(attacker):
                 applyEffect(attacker, defender)
             defender.health -= attacker.damage

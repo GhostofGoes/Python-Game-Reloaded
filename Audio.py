@@ -4,7 +4,7 @@ import logging
 
 from pygame.mixer import music
 
-import functions
+import Utils
 
 
 class GameAudio:
@@ -28,7 +28,7 @@ class GameAudio:
 
     def play_next_song(self):
         self._logger.info('Playing next song in queue')
-        if functions.DEBUG == 2:
+        if Utils.DEBUG == 2:
             return
         else:
             music.play(-1)

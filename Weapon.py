@@ -3,22 +3,24 @@ import random
 import Display
 import pygame
 import SpriteAnimation
-import functions
+import Utils
 
-#Weapon Defaults
-RANGE = 48 + 48  #swing across this many pixels collide with objects in range, hurt them
-DAMAGE = 1  #Base Damage dealt by weapon
+# Weapon Defaults
+# Swing across this many pixels collide with objects in range, hurt them
+RANGE = 48 + 48
+# Base Damage dealt by weapon
+DAMAGE = 1
 EFFECT = "none"
 WM = WeaponLabelMaker.WeaponLabelMaker()
 
 
 class MeleeWeapon:
     default_sprite1 = pygame.transform.scale(
-        functions.load_image('weapon_swing1.png'), (RANGE, RANGE))
+        Utils.load_image('weapon_swing1.png'), (RANGE, RANGE))
     default_sprite2 = pygame.transform.scale(
-        functions.load_image('weapon_swing2.png'), (RANGE, RANGE))
+        Utils.load_image('weapon_swing2.png'), (RANGE, RANGE))
     default_sprite3 = pygame.transform.scale(
-        functions.load_image('weapon_swing3.png'), (RANGE, RANGE))
+        Utils.load_image('weapon_swing3.png'), (RANGE, RANGE))
     sprite_list_right = [
         pygame.transform.rotate(default_sprite1, 0),
         pygame.transform.rotate(default_sprite2, 0),
@@ -220,4 +222,4 @@ class MeleeWeapon:
         Display.DISPLAYSURF.blit(self.text, (self.originx - 5, (self.originy)))
 
     def pickup(self):
-        functions.playerInventory.append(self)
+        Utils.playerInventory.append(self)

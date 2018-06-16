@@ -1,7 +1,7 @@
 import random
 import Potions
 import Weapon
-import functions
+import Utils
 
 ENEMYDROPRATE = 1
 CHESTDROPRATE = 5
@@ -45,5 +45,5 @@ class Inventory:
     def dropItems(self):
         if self.items:
             for item in self.items:
-                functions.worldInventory.append(item)
+                Utils.worldInventory.append(item)
                 #functions.worldCoins += self.coins

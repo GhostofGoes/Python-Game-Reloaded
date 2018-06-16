@@ -2,7 +2,7 @@ import pygame
 import logging
 
 import Display
-from functions import load_image
+from Utils import load_image
 
 
 class Menu:

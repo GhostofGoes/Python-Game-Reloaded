@@ -1,12 +1,12 @@
 """ User input handling """
 
+import logging
+
 from pygame import joystick
 from pygame.locals import *
 import pygame
 
-import logging
-
-import functions
+import Utils
 import Display
 
 # Controller sensitivity to axis position changes
@@ -292,7 +292,7 @@ class Input:
             playerObj.usePotion()
         elif action == PICKUP_OBJECT:
             playerObj.pickup = True
-            if functions.playerInventory:
+            if Utils.playerInventory:
                 playerObj.isTrading = True
         elif action == NO_PICKUP_OBJECT:
             playerObj.pickup = False
@@ -302,15 +302,15 @@ class Input:
             self._log.debug('Opening menu')
             menuObject.activateText()
         elif action == PAUSE_GAME:
-            if functions.paused:
+            if Utils.paused:
                 self._log.debug('Resuming game')
-                functions.paused = False
+                Utils.paused = False
             else:
                 self._log.debug('Pausing game')
-                functions.paused = True
+                Utils.paused = True
         elif action == TAKE_SCREENSHOT:
             self._log.info('Taking screenshot')
-            functions.screenshot()
+            Utils.screenshot()
         elif action == SET_FULLSCREEN:
             if Display.is_fullscreen:
                 self._log.debug('Exiting fullscreen')

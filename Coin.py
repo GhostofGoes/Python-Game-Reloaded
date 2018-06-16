@@ -1,7 +1,7 @@
 import pygame
 
 import Display
-import functions
+import Utils
 import random
 
 
@@ -26,5 +26,5 @@ class Coin:
 
     def pickup(self):
         if self.shouldDraw:
-            functions.moveCoinFromWorldToPlayerInv(self)
+            Utils.moveCoinFromWorldToPlayerInv(self)
             self.shouldDraw = False

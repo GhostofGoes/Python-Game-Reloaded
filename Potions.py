@@ -1,6 +1,6 @@
 import PotionLabelMaker
 import random
-import functions
+import Utils
 import pygame
 import Display
 
@@ -55,7 +55,7 @@ class Potion:
     def pickup(self):
         if self.shouldDraw == True:
             print("acquired potion!")
-            functions.movePotionFromWorldToPlayerInv(self)
+            Utils.movePotionFromWorldToPlayerInv(self)
             self.shouldDraw = False
         else:
             pass

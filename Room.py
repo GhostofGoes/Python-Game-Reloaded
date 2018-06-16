@@ -4,7 +4,7 @@ import Display
 import Player
 import random
 import Spawnner
-import functions
+import Utils
 import NPC
 import Shopkeeper
 
@@ -27,18 +27,18 @@ LEFT_DOOR_CORDS = [0, Display.SCREEN_HEIGHT // 2]
 
 class Room:
     # sprite library
-    wall_up_sprite = functions.load_image('wall_up.png')
+    wall_up_sprite = Utils.load_image('wall_up.png')
     wall_right_sprite = pygame.transform.rotate(wall_up_sprite, 90)
     wall_down_sprite = pygame.transform.rotate(wall_up_sprite, 180)
     wall_left_sprite = pygame.transform.rotate(wall_up_sprite, 270)
-    wall_corner_sprite = functions.load_image('wall_corner_upleft.png')
+    wall_corner_sprite = Utils.load_image('wall_corner_upleft.png')
     wall_flipped_corner_sprite = pygame.transform.rotate(
         wall_corner_sprite, 180)
-    door_up_sprite = functions.load_image('door_up.png')
+    door_up_sprite = Utils.load_image('door_up.png')
     door_right_sprite = pygame.transform.rotate(door_up_sprite, 90)
     door_down_sprite = pygame.transform.rotate(door_up_sprite, 180)
     door_left_sprite = pygame.transform.rotate(door_up_sprite, 270)
-    tile_sprite = functions.load_image('tile.png')
+    tile_sprite = Utils.load_image('tile.png')
 
     def __init__(self, dungeonObject, color, numSpawners):
         self.NPCObject = NPC.NPC(356, Display.GAME_SCREEN_START + 56, self,
